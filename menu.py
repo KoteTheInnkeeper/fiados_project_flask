@@ -4,12 +4,14 @@
 """
 
 from utils.database_managment import Database, logger
-
+from time import sleep
 
 # A few functions for help and quiting the program
 def exit_from_program(_):
     print("Gracias por usar este programa!")
+    sleep(2)
     exit()
+
 
 
 def show_help(_):

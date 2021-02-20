@@ -122,12 +122,17 @@ class Database:
             cursor.execute("SELECT * FROM saldos ORDER BY name")
             results = cursor.fetchall()
             if any(results):
-                print("Los saldos al día de la fecha se muestran a continuación.")
-                for i, (name, amount) in enumerate(results, start=1):
-                    status_string = 'debe' if amount < 0 else 'tiene a favor'
-                    print(f"{i}) {name.title()} {status_string} $%.2f." % abs(amount))
+                balances = (
+                    [name, amount]
+                    for name, amount in results
+                )
+                return balances
+            """print("Los saldos al día de la fecha se muestran a continuación.")
+            for i, (name, amount) in enumerate(results, start=1):
+                status_string = 'debe' if amount < 0 else 'tiene a favor'
+                print(f"{i}) {name.title()} {status_string} $%.2f." % abs(amount))
             else:
-                print("¡No hay saldos pendientes!")
+            print("¡No hay saldos pendientes!")"""
 
     def show_history(self, name: str) -> None:
         with DatabaseConnection(self.host) as connection:

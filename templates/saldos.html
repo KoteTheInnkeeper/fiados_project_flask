@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>SALDOS ACTUALES</h1>
+    {% if balances %}
+        {% for name, amount in balances %}
+            <p>{{name.title()}} => {{amount}}</p>
+        {% endfor %}
+    {% else %}
+        <p>Parece no haber ningún saldo pendiente.</p>
+    {% endif %}
+{% endblock %}

@@ -3,3 +3,6 @@
 2021-02-07 10:43:53,336 ERROR    [database_managment.py:47] utils/database_file.db wasn't found. Creating a new one...
 2021-02-07 10:43:53,337 DEBUG    [database_managment.py:49] utils/database_file.db successfully created.
 2021-02-07 10:43:53,337 DEBUG    [database_managment.py:50] Creating the 'operaciones' and 'saldos' tables in utils/database_file.db
+2021-02-20 08:47:41,523 DEBUG    [database_managment.py:21] 'Database' object referred to utils/database_file.db
+2021-02-20 08:47:41,523 DEBUG    [database_managment.py:40] Checking if utils/database_file.db exists
+2021-02-20 08:47:41,523 DEBUG    [database_managment.py:42] utils/database_file.db exists. If 'operaciones' and 'saldos' tables don't exist, they will be created.

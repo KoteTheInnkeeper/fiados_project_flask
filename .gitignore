@@ -1,4 +1,11 @@
-# Project exclude paths
+# venv files
 /venv/
+/Pipfile
+/Pipfile.lock
+
+# Runtime files
 /log.txt
 /utils/database_file.db
+
+# vscode cache files
+*.pyc

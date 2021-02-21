@@ -4,9 +4,13 @@ debts, gathering the info for showing the operations, etc.
 """
 import logging
 import time
-from datetime import datetime
 
+from datetime import datetime
 from utils.database_connection import DatabaseConnection, sqlite3
+from typing import List, Set
+
+with open('log.txt', 'w'):
+    print()
 
 # Set the basic configurations for the logger
 logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG,
@@ -18,7 +22,7 @@ logger = logging.getLogger("Project logger")
 class Database:
     def __init__(self, host: str):
         self.host = host
-        logger.debug(f"'Database' object referred to {self.host}")
+        logger.debug(f"New log file created and 'Database' object referred to {self.host}.")
 
     def create_tables(self):
         try:
@@ -92,7 +96,7 @@ class Database:
             logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
             raise
         else:
-            print(f"El pago de {name.title()} por $%.2f fue agregado correctamente." % amount)
+            logger.debug(f"{name.title()}'s payment for $.2f added succesfully." % amount)
 
     def update(self):
         # Let's get the names in the operaciones table.
@@ -115,24 +119,52 @@ class Database:
             cursor = connection.cursor()
             cursor.execute("DELETE FROM saldos WHERE amount=0")
 
-    def show_balances(self) -> None:
+    def show_balances(self) -> List:
+        """
+            Returns a list where each element it's a tuple with two elements: name and amount of
+            the balance.
+        """
         self.update()
         with DatabaseConnection(self.host) as connection:
             cursor = connection.cursor()
             cursor.execute("SELECT * FROM saldos ORDER BY name")
             results = cursor.fetchall()
+            logger.debug("Gathering balances")
             if any(results):
                 balances = (
-                    [name, amount]
+                    (name, amount)
                     for name, amount in results
                 )
+                logger.debug("Balances found were put into a list and returned.")
                 return balances
-            """print("Los saldos al día de la fecha se muestran a continuación.")
-            for i, (name, amount) in enumerate(results, start=1):
-                status_string = 'debe' if amount < 0 else 'tiene a favor'
-                print(f"{i}) {name.title()} {status_string} $%.2f." % abs(amount))
-            else:
-            print("¡No hay saldos pendientes!")"""
+
+    def get_clients(self) -> List:
+        """
+            Returns a list where each element is a client's name. These names are gathered
+            from the 'operaciones' table. This means that any client who payed or contracted
+            a debt before is going to figure here. 
+
+            I pictured this would be useful when the prompt for 'adding a debt' (or payment)
+            was raised, since I want the user to be able to 'select' a client's name or 'insert
+            a new one' if it's needed.
+        """
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            logger.debug("Geting the names in the 'operaciones' table.")
+            cursor.execute("SELECT name FROM operaciones ORDER BY name")
+            results = cursor.fetchall()
+            if results:
+                logger.debug("Clients found. Saving them into a set")
+                clients = []
+                for e in results:
+                    if e[0] not in clients:
+                        clients.append(e[0])
+                logger.debug("Returning these clients as a list")
+                return clients
+            logger.debug("There are no clients yet!")
+            return []
+
+
 
     def show_history(self, name: str) -> None:
         with DatabaseConnection(self.host) as connection:

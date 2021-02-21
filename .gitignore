@@ -9,7 +9,8 @@
 
 # vscode cache files
 *.pyc
+/.vscode
 
 # Other directories
-/.idea/
+/.idea
 /__pycache__/

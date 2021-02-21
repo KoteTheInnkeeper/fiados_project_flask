@@ -35,8 +35,15 @@ def display_totals():
     return render_template('saldos.html', balances=balances)
 
 
+@app.route('/add_operation')
+def add_operation():
+    return render_template('add_operation.html')
+
+
 ### FLASK RUN ONLY IF THIS IS THE MAIN SCRIPT ###
 if __name__ == '__main__':
+    clients = database.get_clients()
+    print(clients)
     app.run(debug=True)
-
+    
 

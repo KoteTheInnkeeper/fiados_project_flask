@@ -9,22 +9,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
         </li>
       </ul>
     </div>
   </nav>
-{% endblock %}
-
-{% block title %} Inicio {% endblock %}
-
-{% block content %}
-    <p>{{ WELCOME_STRING }}</p>
 {% endblock %}

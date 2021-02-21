@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('add_operation')}}">Ingresar</a>
+        </li>
+{% endblock %}
+
+
+
+{% block content %}
+<!--Login card-->
+<div class="center">
+<div class="card-center text-center">
+    <h5 class="card-header">Ingreso</h5>
+    <div class="card-body">
+        <form action="#" method="post">
+            <div class="form-group text-left">
+              <label for="exampleFormControlInput1">Usuario</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre de usuario" name="user">
+            </div>
+            <div class="form-group text-left">
+                <label for="exampleFormControlInput1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Contraseña" name="pass">
+              </div>
+              <p><input class="btn btn-primary" type="submit" value="Ingresar"></p>
+          </form>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

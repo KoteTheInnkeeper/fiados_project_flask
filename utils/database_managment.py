@@ -8,6 +8,7 @@ import time
 from datetime import datetime
 from utils.database_connection import DatabaseConnection, sqlite3
 from typing import List, Set
+from .users import ADMIN
 
 with open('log.txt', 'w'):
     print()
@@ -23,16 +24,21 @@ class Database:
     def __init__(self, host: str):
         self.host = host
         logger.debug(f"New log file created and 'Database' object referred to {self.host}.")
-
-    def create_tables(self):
         try:
+            logger.debug(f"Checking if {self.host} exists")
+            with open(self.host, 'r'):
+                logger.debug(f"{self.host} exists")            
+        except FileNotFoundError:
+            with open(self.host, 'w'):
+                logger.error(f"{self.host} created, since it did't exist.")
+        finally:
             with DatabaseConnection(self.host) as connection:
                 cursor = connection.cursor()
                 cursor.execute("CREATE TABLE IF NOT EXISTS operaciones(name TEXT, amount FLOAT, date FLOAT)")
                 cursor.execute("CREATE TABLE IF NOT EXISTS saldos(name TEXT UNIQUE primary key, amount FLOAT)")
-        except sqlite3.OperationalError:
-            logger.error(f"sqlite3.OperationalError encountered. Check the traceback.")
-            raise
+                cursor.execute("CREATE TABLE IF NOT EXISTS usuarios(name TEXT UNIQUE primary key, password TEXT)")
+                cursor.execute("INSERT OR IGNORE INTO usuarios VALUES(?, ?)", (ADMIN[0], ADMIN[1]))
+
 
     def initialize(self):
         """
@@ -46,7 +52,6 @@ class Database:
                 logger.debug(f"{self.host} exists. If 'operaciones' and 'saldos' tables don't exist, they will be "
                              f"created.")
                 # Query for creating tables if they don't exist.
-                self.create_tables()
         except FileNotFoundError:
             logger.error(f"{self.host} wasn't found. Creating a new one...")
             with open(self.host, 'w'):
@@ -182,4 +187,14 @@ class Database:
                     print(f"\t->{string_status} $%.2f el día {date_to_show} a las {time_to_show}" % abs(amount))
             else:
                 print(f"No se han encontrado operaciones para {name.title()}. Compruebe que lo ha escrito correctamente.")
+
+    def check_login(self, username: str, password: str):
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM usuarios")
+            result = cursor.fetchone()
+            if str(result[0]).lower() == username and result[1] == password:
+                return True
+            else:
+                return False
 

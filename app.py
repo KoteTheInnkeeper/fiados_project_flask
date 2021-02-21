@@ -4,8 +4,8 @@ This program is meant to take debts and payments given a name. It should also st
 Aside from that, I want to build a Flask app to manage this, instead of using the console.
 """
 from utils.database_managment import Database
-from menu import Operations, MainMenu
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, session, request
+from datetime import timedelta
 
 WELCOME_STRING = """Bienvenido a la versión 2.0 del programa de deudas. Este le ayudará a llevar las deudas y pagos de
 las distintas personas que interactúen con su negocio. Además, le permitirá ver el historial de
@@ -22,23 +22,55 @@ database.update()
 
 ### FLASK APP ###
 app = Flask(__name__)
+app.secret_key = "J@tAYGpzdCRL6C2jKBuW&8"
+app.permanent_session_lifetime = timedelta(hours=8)
 
 
 @app.route('/')
 def home():
-    return render_template('index.html', WELCOME_STRING=WELCOME_STRING)
-
+    try:
+        if session['user']:
+            return render_template('index.html', WELCOME_STRING=WELCOME_STRING)
+    except KeyError:
+        return redirect(url_for('login'))
+        
 
 @app.route('/display_totals')
 def display_totals():
-    balances = database.show_balances()
-    return render_template('saldos.html', balances=balances)
+    try:
+        if session['user']:
+            balances = database.show_balances()
+            return render_template('saldos.html', balances=balances)
+    except KeyError:
+        return redirect(url_for('login'))
 
 
 @app.route('/add_operation')
 def add_operation():
-    return render_template('add_operation.html')
+    try:
+        if session['user']:
+            return render_template('add_operation.html')
+    except KeyError:
+        return redirect(url_for('login'))
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session.permament = True
+        user = request.form['user']
+        password = request.form['pass']
+        if database.check_login(user, password):
+            session['user'] = user
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('login'))
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('home'))
 
 ### FLASK RUN ONLY IF THIS IS THE MAIN SCRIPT ###
 if __name__ == '__main__':

@@ -1,8 +1,117 @@
-2021-02-21 11:53:29,323 DEBUG    [database_managment.py:25] New log file created and 'Database' object referred to utils/database_file.db.
-2021-02-21 11:53:29,323 DEBUG    [database_managment.py:44] Checking if utils/database_file.db exists
-2021-02-21 11:53:29,324 DEBUG    [database_managment.py:46] utils/database_file.db exists. If 'operaciones' and 'saldos' tables don't exist, they will be created.
-2021-02-21 11:53:29,449 DEBUG    [database_managment.py:153] Geting the names in the 'operaciones' table.
-2021-02-21 11:53:29,450 DEBUG    [database_managment.py:157] Clients found. Saving them into a set
-2021-02-21 11:53:29,450 DEBUG    [database_managment.py:162] Returning these clients as a list
-2021-02-21 11:53:29,458 WARNING  [_internal.py:113]  * Debugger is active!
-2021-02-21 11:53:29,458 INFO     [_internal.py:113]  * Debugger PIN: 234-919-219
+2021-02-21 15:38:33,646 DEBUG    [database_managment.py:26] New log file created and 'Database' object referred to utils/database_file.db.
+2021-02-21 15:38:33,646 DEBUG    [database_managment.py:28] Checking if utils/database_file.db exists
+2021-02-21 15:38:33,646 DEBUG    [database_managment.py:30] utils/database_file.db exists
+2021-02-21 15:38:33,647 DEBUG    [database_managment.py:50] Checking if utils/database_file.db exists
+2021-02-21 15:38:33,647 DEBUG    [database_managment.py:52] utils/database_file.db exists. If 'operaciones' and 'saldos' tables don't exist, they will be created.
+2021-02-21 15:38:33,659 DEBUG    [database_managment.py:158] Geting the names in the 'operaciones' table.
+2021-02-21 15:38:33,659 DEBUG    [database_managment.py:169] There are no clients yet!
+2021-02-21 15:38:33,668 WARNING  [_internal.py:113]  * Debugger is active!
+2021-02-21 15:38:33,668 INFO     [_internal.py:113]  * Debugger PIN: 191-200-674
+2021-02-21 15:38:38,778 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:38] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:38:39,638 DEBUG    [database_managment.py:137] Gathering balances
+2021-02-21 15:38:39,646 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:39] "[37mGET /display_totals HTTP/1.1[0m" 200 -
+2021-02-21 15:38:44,669 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:44] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:38:44,680 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:44] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:38:44,692 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:44] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:46,024 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:38:46,031 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:46,604 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[32mGET /display_totals HTTP/1.1[0m" 302 -
+2021-02-21 15:38:46,611 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:46,974 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[32mGET /add_operation HTTP/1.1[0m" 302 -
+2021-02-21 15:38:46,981 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:46] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:47,575 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:47] "[32mGET /add_operation HTTP/1.1[0m" 302 -
+2021-02-21 15:38:47,583 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:47] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:48,198 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:38:48,205 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:48,575 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[32mGET /display_totals HTTP/1.1[0m" 302 -
+2021-02-21 15:38:48,583 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:38:48,845 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:38:48,852 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:38:48] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:39:43,205 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:43] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:39:45,056 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:45] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:39:45,063 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:45] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:39:47,718 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:39:47,728 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:47] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:39:51,530 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:39:51,537 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:51] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:39:56,999 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:56] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:39:57,007 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:57] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:39:57,015 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:39:57] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:43:12,583 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:12] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:43:19,398 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:19] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:43:21,846 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:21] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:43:21,854 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:21] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:43:25,233 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:25] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:43:25,242 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:25] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:43:28,760 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:43:28] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:44:21,158 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:21] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:44:21,781 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:21] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:44:22,686 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:22] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:44:23,341 DEBUG    [database_managment.py:137] Gathering balances
+2021-02-21 15:44:23,349 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:23] "[37mGET /display_totals HTTP/1.1[0m" 200 -
+2021-02-21 15:44:24,394 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:24] "[37mGET /add_operation HTTP/1.1[0m" 200 -
+2021-02-21 15:44:25,224 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:25] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:44:57,866 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:57] "[37mGET /add_operation HTTP/1.1[0m" 200 -
+2021-02-21 15:44:58,780 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:58] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:44:59,198 DEBUG    [database_managment.py:137] Gathering balances
+2021-02-21 15:44:59,200 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:59] "[37mGET /display_totals HTTP/1.1[0m" 200 -
+2021-02-21 15:44:59,530 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:59] "[37mGET /add_operation HTTP/1.1[0m" 200 -
+2021-02-21 15:44:59,999 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:44:59] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:00,490 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:00] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:01,008 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:01] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:01,330 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:01] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:55,552 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:55] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:56,581 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:56] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:56,738 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:56] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:56,885 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:56] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:57,222 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:57] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:45:57,369 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:45:57] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:47:07,786 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:07] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:47:09,956 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:09] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:47:09,966 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:09] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:47:09,978 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:09] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:11,501 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:11] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:47:11,509 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:11] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:18,728 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:18] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:19,873 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:19] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:47:20,092 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:20] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:21,805 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:47:21,814 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:21] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:47:21,821 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:21] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:22,804 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:22] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:47:22,817 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:22] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:47:22,827 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:22] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:38,695 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:38] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:39,216 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:39] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:39,363 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:39] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:47:53,610 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:47:53] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:48:00,794 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:00] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:48:00,801 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:00] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:48:04,161 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:04] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:48:04,170 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:04] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:48:05,889 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:05] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:48:05,897 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:05] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:48:05,906 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:48:05] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:36,057 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:50:36,064 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:36,077 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:36,714 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:50:36,722 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:36,728 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:36] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:37,257 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:37] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:50:37,264 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:37] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:37,271 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:37] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:39,354 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:39] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-02-21 15:50:39,362 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:39] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:39,369 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:39] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:42,002 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:42] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:42,008 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:42] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:42,955 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:42] "[32mGET / HTTP/1.1[0m" 302 -
+2021-02-21 15:50:42,962 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:42] "[37mGET /login HTTP/1.1[0m" 200 -
+2021-02-21 15:50:47,041 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-02-21 15:50:47,048 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:47] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-21 15:50:57,216 DEBUG    [database_managment.py:137] Gathering balances
+2021-02-21 15:50:57,218 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:57] "[37mGET /display_totals HTTP/1.1[0m" 200 -
+2021-02-21 15:50:58,181 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:58] "[37mGET /add_operation HTTP/1.1[0m" 200 -
+2021-02-21 15:50:58,894 DEBUG    [database_managment.py:137] Gathering balances
+2021-02-21 15:50:58,895 INFO     [_internal.py:113] 127.0.0.1 - - [21/Feb/2021 15:50:58] "[37mGET /display_totals HTTP/1.1[0m" 200 -

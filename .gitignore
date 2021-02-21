@@ -6,6 +6,7 @@
 # Runtime files
 /log.txt
 /utils/database_file.db
+/utils/users.py
 
 # vscode cache files
 *.pyc

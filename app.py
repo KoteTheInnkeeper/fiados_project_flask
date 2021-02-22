@@ -35,7 +35,7 @@ def home():
         return redirect(url_for('login'))
         
 
-@app.route('/display_totals')
+@app.route('/totals')
 def display_totals():
     try:
         if session['user']:
@@ -45,11 +45,35 @@ def display_totals():
         return redirect(url_for('login'))
 
 
-@app.route('/add_operation')
+@app.route('/add', methods=['POST', 'GET'])
 def add_operation():
     try:
         if session['user']:
-            return render_template('add_operation.html')
+            try:
+                if request.method == 'POST':
+                    # Get te form's data.
+                    old_name = '' if request.form['old_client'] == 'No está en la lista' else request.form['old_client']
+                    new_name = request.form['new_client']
+                    try:
+                        amount = float(str(request.form['amount']).strip().strip('-'))
+                    except ValueError:
+                        return redirect(url_for('add_operation'))                    
+                    operation = request.form['op_radio']                    
+                    if (old_name or new_name) and amount:
+                        if not old_name:
+                            name = new_name
+                        else:
+                            name = old_name
+                        database.add_operation(name, amount, operation)
+                    else:
+                        return redirect(url_for('add_operation'))
+
+                    return redirect(url_for('display_totals'))
+                else:
+                    clients = database.get_clients()
+                    return render_template('add_operation.html', clients=clients)
+            except:
+                raise
     except KeyError:
         return redirect(url_for('login'))
 
@@ -74,8 +98,6 @@ def logout():
 
 ### FLASK RUN ONLY IF THIS IS THE MAIN SCRIPT ###
 if __name__ == '__main__':
-    clients = database.get_clients()
-    print(clients)
     app.run(debug=True)
     
 

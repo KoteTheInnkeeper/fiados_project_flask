@@ -19,7 +19,7 @@
     {% if balances %}
     <ul>
         {% for name, amount in balances %}
-            {% set action = "debe" if amount > 0 else "tiene a favor" %}
+            {% set action = "debe" if amount < 0 else "tiene a favor" %}
             <li><p>{{name.title()}} {{action}} ${{amount|abs}}</p></li>
         {% endfor %}
     </ul>

@@ -59,27 +59,27 @@ class Database:
             logger.debug(f"Creating the 'operaciones' and 'saldos' tables in {self.host}")
             self.create_tables()
 
-    def add_debt(self, name: str, amount: float) -> None:
+    def add_operation(self, name: str, amount: float, operation: str) -> None:
         """
-            This method deals with adding a debt to the database.
+            This method deals with adding an operation to the database.
 
         :param name: client's name
         :param amount: amount the client contracted debt for
+        :param operation: 'debt' or 'payment'. 
         """
-        logger.debug("Try to get today's date and add the debt.")
+        logger.debug("Try to get today's date and add the operation.")
         try:
             date = time.time()
             amount = abs(amount)
             with DatabaseConnection(self.host) as connection:
                 cursor = connection.cursor()
-                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name.lower(), -amount, date))
+                amount = (-1 * amount) if operation == 'debt' else amount
+                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name.lower(), amount, date))
             logger.debug("Updating the 'saldos' table.")
             self.update()
         except sqlite3.OperationalError:
             logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
             raise
-        else:
-            print(f"La deuda de {name.title()} por $%.2f fue cargada correctamente." % amount)
 
     def add_payment(self, name: str, amount: float) -> None:
         """
@@ -102,27 +102,6 @@ class Database:
             raise
         else:
             logger.debug(f"{name.title()}'s payment for $.2f added succesfully." % amount)
-
-    def update(self):
-        # Let's get the names in the operaciones table.
-        with DatabaseConnection(self.host) as connection:
-            cursor = connection.cursor()
-            cursor.execute("SELECT name FROM operaciones")
-            names = {e[0] for e in cursor.fetchall()}  # {'NON', 'REPEATED', 'NAMES'}
-            cursor.execute("DELETE FROM saldos")
-            # Search for the total for each person and add it to the database.
-            for name in names:
-                try:
-                    cursor.execute("SELECT amount FROM operaciones WHERE name=?", (name, ))
-                    amounts = [e[0] for e in cursor.fetchall()]
-                    total = sum(amounts)
-                    cursor.execute("INSERT INTO saldos VALUES(?, ?)", (name, total))
-                except sqlite3.OperationalError:
-                    logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
-        # Update and erase totals equal to zero
-        with DatabaseConnection(self.host) as connection:
-            cursor = connection.cursor()
-            cursor.execute("DELETE FROM saldos WHERE amount=0")
 
     def show_balances(self) -> List:
         """

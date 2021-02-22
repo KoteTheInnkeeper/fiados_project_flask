@@ -4,7 +4,7 @@
 /Pipfile.lock
 
 # Runtime files
-/log.txt
+log.txt
 /utils/database_file.db
 /utils/users.py
 

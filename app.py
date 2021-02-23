@@ -36,20 +36,20 @@ log.debug('Permanent session lifetime set')
 
 @app.route('/')
 def home():
-    try:
-        if session['user']:
-            return render_template('index.html', WELCOME_STRING=WELCOME_STRING)
-    except KeyError:
+    if 'user' in session:
+        return render_template('index.html', WELCOME_STRING=WELCOME_STRING)
+    else:
+        log.error("A session wasn't found when trying to load the 'home' page. Redirecting to 'login' page.")
         return redirect(url_for('login'))
         
 
 @app.route('/totals')
 def display_totals():
-    try:
-        if session['user']:
-            balances = database.show_balances()
-            return render_template('saldos.html', balances=balances)
-    except KeyError:
+    if 'user' in session:
+        balances = database.show_balances()
+        return render_template('saldos.html', balances=balances)
+    else:
+        log.error('Attempted to see "totals" content without a session.')
         return redirect(url_for('login'))
 
 
@@ -61,41 +61,41 @@ def add_operation():
         are they filled with correct values?, etc.)
         If the method is GET, it just renders the template.
     """
-    try:
-        log.debug("Checking for session")
-        if session['user']:
-            log.debug(f"Session for {session['user']} found.")
+    
+    log.debug("Checking for session")
+    if "user" in session:
+        log.debug(f"Session for {session['user']} found.")
+        
+        if request.method == 'POST':    # If a form was submited...
+            log.debug("POST request received. Getting the form's data")
+            old_name = '' if request.form['old_client'] == 'No está en la lista' else request.form['old_client']
+            new_name = request.form['new_client']
             try:
-                if request.method == 'POST':
-                    log.debug("POST request received. Getting the form's data")
-                    old_name = '' if request.form['old_client'] == 'No está en la lista' else request.form['old_client']
-                    new_name = request.form['new_client']
-                    try:
-                        amount = float(str(request.form['amount']).strip().strip('-'))
-                    except ValueError:
-                        return redirect(url_for('add_operation'))                    
-                    operation = request.form['op_radio']                    
-                    if (old_name or new_name) and amount:
-                        log.debug('Conditions for adding operation matched. Checking the names')
-                        if not old_name:
-                            name = new_name
-                        else:
-                            name = old_name
-                        database.add_operation(name, amount, operation)
-                        log.debug(f"Added {name.title()}'s {operation} for $%.2f" % amount)
-                        log.debug(f"Changing values in strings for showing them.")
-                        operation = 'La deuda' if operation == 'debt' else 'El pago'
-                        return render_template('successfull.html', name=name, amount=amount, operation=operation)
-                    else:
-                        log.error('Adding conditions unmatched. Refreshing the page.')
-                        return redirect(url_for('add_operation'))
+                amount = float(str(request.form['amount']).strip().strip('-'))
+            except ValueError:
+                return redirect(url_for('add_operation'))                    
+            operation = request.form['op_radio']                    
+            if (old_name or new_name) and amount:
+                log.debug('Conditions for adding operation matched. Checking the names')
+                if not old_name:
+                    name = new_name
                 else:
-                    log.debug("GET request received. Getting the clients and rendering html.")
-                    clients = database.get_clients()
-                    return render_template('add_operation.html', clients=clients)
-            except:
-                raise
-    except KeyError:
+                    name = old_name
+                database.add_operation(name, amount, operation)
+                log.debug(f"Added {name.title()}'s {operation} for $%.2f" % amount)
+                log.debug(f"Changing values in strings for showing them.")
+                operation = 'La deuda' if operation == 'debt' else 'El pago'
+                return render_template('successfull.html', name=name, amount=amount, operation=operation)
+            else:
+                log.error('Adding conditions unmatched. Refreshing the page.')
+                return redirect(url_for('add_operation'))
+
+        else:   # If the page was loaded by a browser...
+            log.debug("GET request received. Getting the clients and rendering html.")
+            clients = database.get_clients()
+            return render_template('add_operation.html', clients=clients)
+        
+    else:   # If no session was found.
         log.error("No session found. Time to redirect to login.")
         return redirect(url_for('login'))
 
@@ -107,14 +107,14 @@ def succesfully_added(name: str, amount: float, operation: str):
     """
 
     log.debug('Success page wanting to render. Checking if there is a session')
-    try:
-        if session['user']:
-            if request.method == 'GET':
-                log.debug('GET request received. Rendering the template.')
-                return render_template('successfull.html', name=name.title(), amount=amount, operation=operation)
-            elif request.method == 'POST':
-                log.debug('POST request received. Checking the buttons.')
-    except KeyError:
+    
+    if 'user' in session:
+        if request.method == 'GET':
+            log.debug('GET request received. Rendering the template.')
+            return render_template('successfull.html', name=name.title(), amount=amount, operation=operation)
+        elif request.method == 'POST':
+            log.debug('POST request received. Checking the buttons.')
+    else:
         return redirect(url_for('login'))
 
 

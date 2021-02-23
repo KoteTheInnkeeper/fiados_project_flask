@@ -17,7 +17,7 @@ with open('log.txt', 'w'):
 logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG,
                     filename='log.txt')
 # Create the logger
-logger = logging.getLogger("Project logger")
+logger = logging.getLogger("Fiados_logger.Database")
 
 
 class Database:
@@ -38,7 +38,6 @@ class Database:
                 cursor.execute("CREATE TABLE IF NOT EXISTS saldos(name TEXT UNIQUE primary key, amount FLOAT)")
                 cursor.execute("CREATE TABLE IF NOT EXISTS usuarios(name TEXT UNIQUE primary key, password TEXT)")
                 cursor.execute("INSERT OR IGNORE INTO usuarios VALUES(?, ?)", (ADMIN[0], ADMIN[1]))
-
 
     def initialize(self):
         """
@@ -80,6 +79,27 @@ class Database:
         except sqlite3.OperationalError:
             logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
             raise
+
+    def update(self):
+        # Let's get the names in the operaciones table.
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT name FROM operaciones")
+            names = {e[0] for e in cursor.fetchall()}  # {'NON', 'REPEATED', 'NAMES'}
+            cursor.execute("DELETE FROM saldos")
+            # Search for the total for each person and add it to the database.
+            for name in names:
+                try:
+                    cursor.execute("SELECT amount FROM operaciones WHERE name=?", (name, ))
+                    amounts = [e[0] for e in cursor.fetchall()]
+                    total = sum(amounts)
+                    cursor.execute("INSERT INTO saldos VALUES(?, ?)", (name, total))
+                except sqlite3.OperationalError:
+                    logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
+        # Update and erase totals equal to zero
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM saldos WHERE amount=0")
 
     def add_payment(self, name: str, amount: float) -> None:
         """

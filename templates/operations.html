@@ -2,22 +2,16 @@
 
 <!--NavBar block-->
 {% block navbar %}
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{url_for('operations')}}">Ver operaciones</a>
+    <a class="nav-link active" href="{{url_for('operations')}}">Ver operaciones</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
   </li>
-{% endblock %}
-
-{% block title %} Inicio {% endblock %}
-
-{% block content %}
-    <p>{{ WELCOME_STRING }}</p>
 {% endblock %}

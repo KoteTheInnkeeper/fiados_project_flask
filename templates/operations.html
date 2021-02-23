@@ -6,12 +6,39 @@
     <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
+    <a class="nav-link" href="{{url_for('display_totals')}}">Saldos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="{{url_for('operations')}}">Ver operaciones</a>
+    <a class="nav-link active" href="{{url_for('operations')}}">Operaciones</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
   </li>
+{% endblock %}
+
+{% block content%}
+<div class="center">
+  <div class="card-center text-center">
+      <h5 class="card-header">Operaciones</h5>
+      <div class="card-body">
+          <form action="#" method="post">
+              <div class="form-group text-left">
+                <label for="exampleFormControlInput1">Cliente</label>
+                <p><label class="form-check-label form-control-sm">Todos los clientes con los que se han efectuado operaciones anteriormente se encuentran en la lista debajo.</label></p>
+                {% if clients %}
+                  <select class="form-control" id="exampleFormControlSelect1" name="client">
+                    {% for client in clients %}
+                    <option>{{ client.title() }}</option>
+                    {% endfor %}
+                  </select>
+                {% else %}
+                <p><label class="form-control-sm">No hay clientes</label></p>
+                {% endif %}
+              </div>
+              
+              <p><input class="btn btn-primary" type="submit" value="Buscar operaciones"></p>
+          </form>
+      </div>
+  </div>
+</div>
 {% endblock %}

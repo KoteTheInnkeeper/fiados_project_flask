@@ -8,7 +8,6 @@ import logging
 from utils.database_managment import Database
 from flask import Flask, redirect, render_template, url_for, session, request
 from datetime import timedelta
-from time import sleep
 
 
 log = logging.getLogger('Fiados_logger.main_app')
@@ -118,21 +117,34 @@ def succesfully_added(name: str, amount: float, operation: str):
         return redirect(url_for('login'))
 
 
-@app.route('/operations')
+@app.route('/operations', methods=['GET', 'POST'])
 def operations():
     """
         This route deals with showhing operations for a specific person.
     """
-    try:
-        log.debug("Checking for session")
-        if session['user']:
-            if request.method == 'GET':
-                return render_template('operations.html')
-            elif request.method == 'POST':
-                pass
-    except KeyError:
+
+    log.debug("Checking for session")
+    if 'user' in session:
+        if request.method == 'GET':
+            clients = database.get_clients()
+            return render_template('operations.html', clients=clients)
+        elif request.method == 'POST':
+            client = request.form['client']
+            return redirect(url_for('show_operations', client=client))
+            
+    else:
+        log.error("Attempted to see operations without a session. Redirecting to the 'login' page")
         return redirect(url_for('login'))
 
+@app.route('/show_operations')
+def show_operations():
+    if 'user' in session:
+        client = request.args['client']
+        operations = database.history(client.lower())
+        return render_template('show_operations.html', client=client, operations=operations)
+    else:
+        log.error("Attempted to see operations without any session. Redirecting to the 'login' page.")
+        return redirect(url_for('login'))
 
 # LOGIN AND LOGOUT
 @app.route('/login', methods=['GET', 'POST'])
@@ -158,6 +170,7 @@ def logout():
     """
     session.pop('user', None)
     return redirect(url_for('home'))
+
 
 ### FLASK RUN ONLY IF THIS IS THE MAIN SCRIPT ###
 if __name__ == '__main__':

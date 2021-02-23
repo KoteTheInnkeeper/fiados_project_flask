@@ -6,27 +6,37 @@
     <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
   </li>
   <li class="nav-item active">
-    <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
+    <a class="nav-link" href="{{url_for('display_totals')}}">Saldos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{url_for('operations')}}">Ver operaciones</a>
+    <a class="nav-link" href="{{url_for('operations')}}">Operaciones</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
   </li>
 {% endblock %}
 
-{% block title %}Saldos a la fecha {% endblock %}
-
 {% block content %}
-    {% if balances %}
-    <ul>
-        {% for name, amount in balances %}
-            {% set action = "debe" if amount < 0 else "tiene a favor" %}
-            <li><p>{{name.title()}} {{action}} ${{amount|abs}}</p></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p>Parece no haber ningún saldo pendiente.</p>
-    {% endif %}
+<div class="center">
+  <div class="card-center text-center">
+      <h5 class="card-header">Saldos al dia de la fecha</h5>
+      <div class="card-body">
+      {% if balances %}
+      <ul class="list-group text-left w-25">
+          {% for balance in balances %}
+            {% set name, amount = balance %}
+              {% if amount < 0 %}
+                {% set amount = "%.2f" % amount|abs  %}
+                <li class="list-group-item list-group-item-danger">{{name.title()}} (debe)<p class="text-right">${{amount}}</p></li>
+              {% else %}
+              {% set amount = "%.2f" % amount|abs  %}
+                <li class="list-group-item list-group-item-success">{{name.title()}} (a favor)<p class="text-right">${{amount}}</p></li>
+              {% endif %}
+          {% endfor %}
+      </ul>
+    </div>
+      {% else %}
+      <label class="list-group-item list-group-item-warning">Parece no haber saldos pendientes.</label>
+      {% endif %}
+</div>
 {% endblock %}

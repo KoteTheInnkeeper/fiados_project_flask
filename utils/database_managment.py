@@ -17,7 +17,7 @@ with open('log.txt', 'w'):
 logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG,
                     filename='log.txt')
 # Create the logger
-logger = logging.getLogger("Fiados_logger.Database")
+logger = logging.getLogger("Project logger")
 
 
 class Database:
@@ -39,6 +39,7 @@ class Database:
                 cursor.execute("CREATE TABLE IF NOT EXISTS usuarios(name TEXT UNIQUE primary key, password TEXT)")
                 cursor.execute("INSERT OR IGNORE INTO usuarios VALUES(?, ?)", (ADMIN[0], ADMIN[1]))
 
+
     def initialize(self):
         """
             This function deals with checking if the 'database' file exists, creating one if it doesn't, and initialize
@@ -57,6 +58,27 @@ class Database:
                 logger.debug(f"{self.host} successfully created.")
             logger.debug(f"Creating the 'operaciones' and 'saldos' tables in {self.host}")
             self.create_tables()
+    
+    def update(self):
+        # Let's get the names in the operaciones table.
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT name FROM operaciones")
+            names = {e[0] for e in cursor.fetchall()}  # {'NON', 'REPEATED', 'NAMES'}
+            cursor.execute("DELETE FROM saldos")
+            # Search for the total for each person and add it to the database.
+            for name in names:
+                try:
+                    cursor.execute("SELECT amount FROM operaciones WHERE name=?", (name, ))
+                    amounts = [e[0] for e in cursor.fetchall()]
+                    total = sum(amounts)
+                    cursor.execute("INSERT INTO saldos VALUES(?, ?)", (name, total))
+                except sqlite3.OperationalError:
+                    logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
+        # Update and erase totals equal to zero
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM saldos WHERE amount=0")
 
     def add_operation(self, name: str, amount: float, operation: str) -> None:
         """
@@ -79,27 +101,6 @@ class Database:
         except sqlite3.OperationalError:
             logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
             raise
-
-    def update(self):
-        # Let's get the names in the operaciones table.
-        with DatabaseConnection(self.host) as connection:
-            cursor = connection.cursor()
-            cursor.execute("SELECT name FROM operaciones")
-            names = {e[0] for e in cursor.fetchall()}  # {'NON', 'REPEATED', 'NAMES'}
-            cursor.execute("DELETE FROM saldos")
-            # Search for the total for each person and add it to the database.
-            for name in names:
-                try:
-                    cursor.execute("SELECT amount FROM operaciones WHERE name=?", (name, ))
-                    amounts = [e[0] for e in cursor.fetchall()]
-                    total = sum(amounts)
-                    cursor.execute("INSERT INTO saldos VALUES(?, ?)", (name, total))
-                except sqlite3.OperationalError:
-                    logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
-        # Update and erase totals equal to zero
-        with DatabaseConnection(self.host) as connection:
-            cursor = connection.cursor()
-            cursor.execute("DELETE FROM saldos WHERE amount=0")
 
     def add_payment(self, name: str, amount: float) -> None:
         """
@@ -168,24 +169,34 @@ class Database:
             logger.debug("There are no clients yet!")
             return []
 
-
-
-    def show_history(self, name: str) -> None:
+    def history(self, name: str) -> List:
+        """
+            Returns a list where each element consits of a tuple. This tuple has, in this order,
+            the following string objects:
+                -> 'debt' or 'payment' corresponding to the operation
+                -> the amount (formatted as a string to only show two decimal places)
+                -> the operation's date
+                -> at what time of this date the operation was loaded into the system.
+            
+            If the list is empty, then, there are no operations for such individual.
+        """
         with DatabaseConnection(self.host) as connection:
             cursor = connection.cursor()
             cursor.execute("SELECT amount, date FROM operaciones WHERE name=? ORDER BY date", (name, ))
             results = cursor.fetchall()
-            if any(results):
-                print(f"Las operaciones efectuadas por {name.title()} se muestran a continuación.")
-                for i, (amount, date) in enumerate(results, start=1):
-                    string_status = 'PAGÓ' if amount > 0 else 'SE FIÓ'
+            if results:
+                operations = []
+                for (amount, date) in results:
+                    operation = 'debt' if amount < 0 else 'payment'
                     date = float(date)
                     timestamp = datetime.fromtimestamp(date)
                     date_to_show = timestamp.strftime('%d/%m/%Y')
                     time_to_show = timestamp.strftime('%H:%M')
-                    print(f"\t->{string_status} $%.2f el día {date_to_show} a las {time_to_show}" % abs(amount))
+                    amount_string = "%.2f" % abs(amount)
+                    operations.append((operation, amount_string, date_to_show, time_to_show))
+                return operations
             else:
-                print(f"No se han encontrado operaciones para {name.title()}. Compruebe que lo ha escrito correctamente.")
+                return []
 
     def check_login(self, username: str, password: str):
         with DatabaseConnection(self.host) as connection:

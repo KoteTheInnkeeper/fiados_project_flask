@@ -6,10 +6,10 @@
     <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{url_for('display_totals')}}">Ver saldos</a>
+    <a class="nav-link" href="{{url_for('display_totals')}}">Saldos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{url_for('operations')}}">Ver operaciones</a>
+    <a class="nav-link" href="{{url_for('operations')}}">Operaciones</a>
   </li>
   <li class="nav-item">
     <a class="nav-link active" href="{{url_for('add_operation')}}">Agregar</a>
@@ -45,10 +45,8 @@
                     <label class="form-check-label" for="inlineRadio2">Pago</label>
                   </div>
                 </p>
-                  <p>
-                    <label for="exampleFormControlInput1">Cantidad</label>
-                  </p>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="$$$" name="amount">
+                  <p><label for="exampleFormControlInput1">Cantidad</label></p>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="$$$$ (Use el punto como separador decimal)" name="amount">
                 </div>
                 <p><input class="btn btn-primary" type="submit" value="Agregar"></p>
           </form>

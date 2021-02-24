@@ -22,24 +22,49 @@
 {% block content%}
 <div class="center">
   <div class="card-center text-center">
-      <h5 class="card-header">Operaciones efectuadas por {{client.title()}}</h5>
+      <div class="card-header">
+      <h5>Operaciones efectuadas por {{client.title()}}</h5>
+      <p class="card-text">(más recientes primero)</p>
+    </div>
+      <div class="card-body w-25">
+      {% if balance and operations %}
+      
+        <ul class="list-group text-left">
+          {% if balance < 0 %}
+            {% set balance = "%.2f" % balance|abs %}
+          <label class="list-group-item list-group-item-danger">{{client.title()}} debe ${{balance}}</label>
+          {% else %}
+          {% set balance = "%.2f" % balance %}
+          <label class="list-group-item list-group-item-success">{{client.title()}} tiene a favor ${{balance}}</label>
+        </ul>
+          {% endif %}
+          <p></p>
+      {% else %}
         {% if operations %}
-            <div class="card-body">
-      <div class="w-25">
+          <label class="list-group-item list-group-item-primary">{{client.title()}} ha saldado su cuenta.</label>
+        {% endif %}
+      {% endif %}
+    </div>
+        {% if operations %}
+      <div class="card-body w-25">
       <ul class="list-group text-left">
         {% for operation in operations %}
             {% set op, amount, date, time = operation %}
             {% if op == 'debt' %}
-                <li class="list-group-item list-group-item-danger">Se fió ${{amount}} <p class="text-right">({{date}} a las {{time}})</p></li>
+                <li class="list-group-item list-group-item-warning">Se fió ${{amount}} <p class="text-right">({{date}} a las {{time}})</p></li>
             {% else %}
-                <li class="list-group-item list-group-item-success">Pagó ${{amount}} <p class="text-right">({{date}} a las {{time}})</p></li>
+                <li class="list-group-item list-group-item-info">Pagó ${{amount}} <p class="text-right">({{date}} a las {{time}})</p></li>
             {% endif %}
         {% endfor %}
       </ul>
-    </div>
+    
         {% else %}
-        <label class="list-group-item list-group-item-warning">No se tienen registros de las operaciones efectuadas por {{client.title()}}</label>
+        <div class="w-100">
+        <label class="list-group-item list-group-item-warning w-100">No se hallaron operaciones efectuadas por {{client.title()}}</label>
+        </div>
         {% endif %}
+      </div>
+
   </div>
 </div>
 {% endblock %}

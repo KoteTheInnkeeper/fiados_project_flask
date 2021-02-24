@@ -6,7 +6,7 @@ Aside from that, I want to build a Flask app to manage this, instead of using th
 import logging
 
 from utils.database_managment import Database
-from flask import Flask, redirect, render_template, url_for, session, request
+from flask import Flask, redirect, render_template, url_for, session, request, flash
 from datetime import timedelta
 
 
@@ -140,8 +140,8 @@ def operations():
 def show_operations():
     if 'user' in session:
         client = request.args['client']
-        operations = database.history(client.lower())
-        return render_template('show_operations.html', client=client, operations=operations)
+        operations, balance = database.history(client.lower())
+        return render_template('show_operations.html', client=client, operations=operations, balance=balance)
     else:
         log.error("Attempted to see operations without any session. Redirecting to the 'login' page.")
         return redirect(url_for('login'))
@@ -171,14 +171,33 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('home'))
 
-@app.route('/maintenance')
+
+#Maintenance
+@app.route('/maintenance', methods=['GET', 'POST'])
 def maintenance():
     """
         Renders a template for showing what maintenance does if approached with a 'GET' request. Otherwise,
         it will do the maintenance.
     """
+    valid_maintenance = {
+        'Mantenimiento parcial': database.parcial_maintenance,
+        'Mantenimiento total':  database.total_maintenance
+    }
     log.debug("Maintenance tab opened. Searching for session.")
     if "user" in session:
+        if request.method == 'POST':
+            maintenance_type = request.form['maintenance']
+            security_check = request.form['security_check']
+            if security_check == 'Gauss es bonito':
+                try:
+                    maintenance_to_perform = valid_maintenance[maintenance_type]
+                    maintenance_to_perform()
+                    log.debug(f"'{maintenance_type}' performed.")
+                    flash(f"¡El {maintenance_type.lower()} fue realizado satisfactoriamente!", "message")
+                except KeyError:
+                    return "<h3>Not a valid maintenance call.</h3>"
+            else:
+                flash(f"Debe escribir el texto 'Gauss es bonito' para poder ejecutar cualquier tipo de mantenimiento.", "error")
         return render_template('maintenance.html')
     else:
         log.error("Attempted to do maintenance without a user session. Redirecting to 'login' page.")

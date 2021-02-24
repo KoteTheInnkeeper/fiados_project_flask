@@ -19,8 +19,503 @@
 </li>
 {% endblock %}
 
-{% block title %} Inicio {% endblock %}
-
 {% block content %}
-    <p>{{ WELCOME_STRING }}</p>
+<div class="jumbotron">
+    <h1 class="display-4">Inicio</h1>
+    <p class="lead">Bienvenido al programa 'Deudas y pagos' en su versión web.</p>
+    <hr class="my-4">
+    {% with messages = get_flashed_messages(True, ("message",)) %}
+                        {% if messages %}
+                          {% for message in messages %}
+                            <p><h6 class="btn btn-success">{{message[1]}}</h6></p>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith  %}
+
+    <p>El programa le permitirá:</p>
+    <ul>
+      <li>Llevar un registro de las operaciones efectuadas por cada cliente (tanto si se fía como si paga).</li>
+      <li>Consultar los saldos totales, que se calculan según las operaciones cargadas.</li>
+    
+      <li>También se encuentra disponible una opción de 'mantenimiento'. Se recomienda leer atentamente ésta antes de efectuar mantenimiento alguno.</li>
+    </ul>
+    <p>A continuación se enseña un conjunto de tutoriales para utilizar las funcionalidades del programa.</p>
+    <hr class="my-4">
+<!--Descripción de una pestaña: Saldos-->
+<div>
+
+  <h3 class="display-4">Pestaña de Saldos</h3>
+  <p class="lead">La pestaña de saldos tiene el siguiente aspecto.</p>
+  <!--Tarjetas para mostrar las características de Saldos-->
+  
+  <div class="row">
+  <!--Tarjeta de vistazo general-->
+  <div class="col-sm-6">
+  <div class="card" style="width: 40rem;">
+    <img src="https://i.imgur.com/6wHxXKH.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Vistazo general</h5>
+      <p class="card-text">Aunque la información mostrada podría variar, este es el aspecto de la pestaña de Saldos cuando existe alguno. En rojo aparecerán las deudas y en verde aquellos que tengan plata a favor. De todas maneras, se deja por escrito también.</p>
+      <p class="card-text">Los saldos son SIEMPRE al momento de consultarlos, ya que la base de datos se actualiza cada vez que ingresa a la pestaña.</p>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#GeneralSaldos">
+        Ampliar imagen
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="GeneralSaldos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Vistazo general</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="https://i.imgur.com/jIBHFid.png" class="card-img-top" alt="...">
+              <p class="card-text">Como puede ver, la naturaleza del saldo (si debe o si tiene a favor) está por escrito, aunque también se indica con colores.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+        </div>
+  <!--Tarjeta de saldos inexistentes-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/6wHxXKH.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">¿No hay saldos?</h5>
+        <p class="card-text">En efecto, si un mensaje como el de la imagen se muestra en la pestaña de saldos, esto indica que no hay saldos pendientes.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SaldosInexistentes">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="SaldosInexistentes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Si no hay saldos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/4evlrDf.png?1" class="card-img-top" alt="...">
+                <p class="card-text">Este es el mensaje que se muestra en caso de que no haya saldos pendientes de ningún tipo.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+          
+        </div>
+</div>
+<hr class="my-4">
+<!--Descripción de una pestaña: Operaciones-->
+<div>
+
+  <h3 class="display-4">Pestaña de Operaciones</h3>
+  <p class="lead">La pestaña de operaciones tiene el siguiente aspecto.</p>
+  <!--Tarjetas para mostrar las características de Operaciones-->
+  
+  <div class="row">
+  <!--Tarjeta de vistazo general-->
+  <div class="col-sm-6">
+  <div class="card" style="width: 40rem;">
+    <img src="https://i.imgur.com/hDXdFsp.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Vistazo general</h5>
+      <p class="card-text">En esta pestaña encontrará una lista donde figurarán todos los clientes con los que haya efectuado alguna operación.</p>
+      <p class="card-text">Si el cliente no se encuentra allí, es porque jamás se realizó una operación con su nombre.</p>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#GeneralOperaciones">
+        Ampliar imagen
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="GeneralOperaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Vistazo general de operaciones</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="https://i.imgur.com/hDXdFsp.png" class="card-img-top" alt="...">
+              <p class="card-text">Recuerde que esta lista se construye con los clientes que haya ingresado en alguna operación.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+        </div>
+  <!--Tarjeta de operaciones -> clientes desplegados-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/4evlrDf.png?1" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Si despliega la lista...</h5>
+        <p class="card-text">lo cual hace dándole clic, podrá ver la lista completa y elegir un cliente. Una vez que haya elegido, presione el botón de "Buscar operaciones"</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OperacionesListaDesplegada">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="OperacionesListaDesplegada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lista desplegada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/4evlrDf.png?1" class="card-img-top" alt="...">
+                <p class="card-text">Puede elegir un cliente de la lista para luego buscar su historial presionando el botón "Buscar operaciones" que se encuentra debajo de la lista.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+  <p></p>
+  <div class="row">
+     <!--Tarjeta de operaciones -> cliente buscado-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/Wc5f6xO.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Resultado de la búsqueda</h5>
+        <p class="card-text">Mostrando primero un balance y luego la lista de operaciones (siempre las más recientes primero), se muestra el historial para el cliente elegido.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OperacionesBuscado">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="OperacionesBuscado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resultado de la búsqueda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/ZMpOCrv.png" class="card-img-top" alt="...">
+                <p class="card-text">El código de colores para 'si el cliente debe' o 'tiene a favor' sigue siendo el mismo que en el de la pestaña de Saldos. De todas maneras, se deja por escrito también.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+  <!--Tarjeta de operaciones -> cliente buscado no tiene operaciones-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/BPMTUxF.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Si el cliente no tiene operaciones</h5>
+        <p class="card-text">Si no se encontrasen operaciones para dicho cliente, vería el siguiente mensaje.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OperacionesBuscadoSinOperaciones">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="OperacionesBuscadoSinOperaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cliente sin operaciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/BPMTUxF.png" class="card-img-top" alt="...">
+                <p class="card-text">Esto significa que no existen operaciones almacenadas para determinado cliente, lo cual no es lo mismo que decir que no tiene un saldo pendiente. Eso se consulta en la pestaña de Saldos.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+  </div>
+  <p></p>
+  <div class="row">
+    <!--Tarjeta de operaciones -> cliente buscado saldó-->
+ <div class="col-sm-6">
+   <div class="card" style="width: 40rem;">
+     <img src="https://i.imgur.com/WZrD54z.png" class="card-img-top" alt="...">
+     <div class="card-body">
+       <h5 class="card-title">Si el cliente saldó su deuda</h5>
+       <p class="card-text">Hay un mensaje distinto al de 'deuda' y 'a favor' para cuando un cliente sí tiene operaciones pero ha saldado su deuda.</p>
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OperacionesBuscadoSaldado">
+         Ampliar imagen
+       </button>
+ 
+       <!-- Modal -->
+       <div class="modal fade" id="OperacionesBuscadoSaldado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Cuando el cliente saldó su deuda</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <img src="https://i.imgur.com/rxZ6ry4.png" class="card-img-top" alt="...">
+               <p class="card-text">Si el cliente saldó su deuda verá el siguiente mensaje al inicio de la lista, en lugar de un balance. De todas maneras, su saldo ni siquiera se muestra en la pestaña de saldos, porque se sobreentiende que ya no tiene ninguno (que su balance es nulo).</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+             </div>
+           </div>
+         </div>
+       </div>
+           </div>
+         </div>
+         </div>
+      </div>
+    </div>
+<hr class="my-4">
+<!--Descripción de una pestaña: Agregar-->
+<div>
+
+  <h3 class="display-4">Pestaña Agregar</h3>
+  <p class="lead">La pestaña de Agregar tiene el siguiente aspecto.</p>
+  <!--Tarjetas para mostrar las características de Agregar-->
+  
+  <div class="row">
+  <!--Tarjeta de vistazo general-->
+  <div class="col-sm-6">
+  <div class="card" style="width: 40rem;">
+    <img src="https://i.imgur.com/SX8uj11.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Vistazo general</h5>
+      <p class="card-text">En esta pestaña el trabajo se dividirá en dos tres partes particulares: la selección del cliente, la naturaleza de la operacion (si se deuda o si paga) y la cantidad monetaria.</p>
+      <p class="card-text">Aquí se agregan nuevas operaciones.</p>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#GeneralAgregar">
+        Ampliar imagen
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="GeneralAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Vistazo general de Agregar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="https://i.imgur.com/SX8uj11.png" class="card-img-top" alt="...">
+              <p class="card-text">Iremos parte por parte.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+        </div>
+  <!--Tarjeta de Agregar -> seccion de clientes-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/lO8Btyd.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Sección de clientes</h5>
+        <p class="card-text">Tendrá dos posibilidades: agregar algún cliente con el que ya se haya efectuado operaciones o uno nuevo. Amplplíe para más información.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarClientes">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="AgregarClientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sobre las formas de ingresar un cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/lO8Btyd.png" class="card-img-top" alt="...">
+                <p class="card-text">El programa prioriza lo que se elija en la lista.</p>
+                <p class="card-text">Si el cliente no figurara en ella, porque se trata de uno nuevo, deje la lista en su opción por defecto ('No está en la lista') y proceda a escribir el nombre del cliente debajo.</p>
+                <p class="card-text">SIEMPRE que la lista esté en la opción 'No está en la lista', se tomará el dato que se pase en el campo donde va el nombre del nuevo cliente.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+  <p></p>
+  <div class="row">
+     <!--Tarjeta de operaciones -> cliente buscado-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/cbplN8D.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Sección de clientes: prevención de errores.</h5>
+        <p class="card-text">¡SIEMPRE SE PRIORIZA LA LISTA!</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarClientesError">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="AgregarClientesError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Prevención de errores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/cbplN8D.png" class="card-img-top" alt="...">
+                <p class="card-text">Ya que siempre se prioriza la lista, si fuera a escribir los datos como figura en la imagen, la operación se cargará para 'Iván' en este caso, y no para Cristina. Revise qué es lo que ingresa.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+  <!--Tarjeta de Agregar -> cliente nuevo-->
+  <div class="col-sm-6">
+    <div class="card" style="width: 40rem;">
+      <img src="https://i.imgur.com/nQGJyGW.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Agregar un cliente nuevo</h5>
+        <p class="card-text">Esta es la forma correcta de agregar un cliente nuevo.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarClienteNuevo">
+          Ampliar imagen
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="AgregarClienteNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cliente nuevo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="https://i.imgur.com/nQGJyGW.png" class="card-img-top" alt="...">
+                <p class="card-text">Como ve, se deja el campo de la lista en 'No está en la lista' (si es un cliente nuevo, desde luego no estará en ella) y se escribe en el campo de abajo el nombre del nuevo cliente.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+  </div>
+  <p></p>
+  <div class="row">
+    <!--Tarjeta de Agregar -> cliente nuevo pagó-->
+ <div class="col-sm-6">
+   <div class="card" style="width: 40rem;">
+     <img src="https://i.imgur.com/a35VeTF.png" class="card-img-top" alt="...">
+     <div class="card-body">
+       <h5 class="card-title">Tipo de operación y cantidad</h5>
+       <p class="card-text">Los siguientes pasos son bastante intuitivos. Amplíe para más info.</p>
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarPago">
+         Ampliar imagen
+       </button>
+ 
+       <!-- Modal -->
+       <div class="modal fade" id="AgregarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Juancito no es moroso...</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <img src="https://i.imgur.com/a35VeTF.png" class="card-img-top" alt="...">
+               <p class="card-text">Supongamos que nuestro nuevo cliente (Juancito, según el ejemplo de antes) pagó $127.50. Ésta es la forma correcta de cargar su operación.</p>
+              <p class="card-text">Recuerde que el separador decimal debe ser un punto, no una coma.</p>
+              <p class="card-text">Naturalmente, si se trata de una deuda, elija esa opción en lugar del pago.</p>
+              <p class="card-text">Una vez cargados los datos, puede presionar el botón de "Agregar" para cargar la operación en el sistema.</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+             </div>
+           </div>
+         </div>
+       </div>
+           </div>
+         </div>
+         </div>
+      </div>
+    </div>
+    </div>
+  </div>
 {% endblock %}

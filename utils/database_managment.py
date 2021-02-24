@@ -7,7 +7,7 @@ import time
 
 from datetime import datetime
 from utils.database_connection import DatabaseConnection, sqlite3
-from typing import List, Set
+from typing import List, Set, Tuple
 from .users import ADMIN
 
 with open('log.txt', 'w'):
@@ -120,6 +120,19 @@ class Database:
                 )
                 logger.debug("Balances found were put into a list and returned.")
                 return balances
+    
+    def get_individual_balance(self, name: str) -> str:
+        """
+            Gets the individual's balance given a name. If it doesn't appear in 'saldos' (meaning, it's balance is zero), returns a False statement.
+            Otherwise, it returns a string formated to show only two decimal places.
+        """
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT amount FROM saldos WHERE name=?", (name.lower(), ))
+            client_balance = cursor.fetchone()
+            if client_balance:
+                return client_balance[0]
+            return False
 
     def get_clients(self) -> List:
         """
@@ -147,9 +160,9 @@ class Database:
             logger.debug("There are no clients yet!")
             return []
 
-    def history(self, name: str) -> List:
+    def history(self, name: str) -> Tuple:
         """
-            Returns a list where each element consits of a tuple. This tuple has, in this order,
+            Returns a tuple where each element consits of a list of tuples and a balance. This list of tuples has, in this order,
             the following string objects:
                 -> 'debt' or 'payment' corresponding to the operation
                 -> the amount (formatted as a string to only show two decimal places)
@@ -157,13 +170,17 @@ class Database:
                 -> at what time of this date the operation was loaded into the system.
             
             If the list is empty, then, there are no operations for such individual.
+
+            The 'balance' (the second element of the returned tuple) is either a float or a False statement. If it were a string, contains
+            the 'total balance'. It is a False statement when the total is zero.
         """
         with DatabaseConnection(self.host) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT amount, date FROM operaciones WHERE name=? ORDER BY date", (name, ))
+            cursor.execute("SELECT amount, date FROM operaciones WHERE name=? ORDER BY date DESC", (name, ))
             results = cursor.fetchall()
+            balance = self.get_individual_balance(name)
+            operations = []
             if results:
-                operations = []
                 for (amount, date) in results:
                     if amount != 0:
                         operation = 'debt' if amount < 0 else 'payment'
@@ -173,9 +190,8 @@ class Database:
                         time_to_show = timestamp.strftime('%H:%M')
                         amount_string = "%.2f" % abs(amount)
                         operations.append((operation, amount_string, date_to_show, time_to_show))
-                return operations
-            else:
-                return []
+            return (operations, balance)
+            
 
     def check_login(self, username: str, password: str):
         with DatabaseConnection(self.host) as connection:
@@ -228,7 +244,7 @@ class Database:
                     cursor.execute("DELETE FROM operaciones WHERE name=?", (name, ))
                     logger.debug(f"Loading a 'zero' operation for {name.title()}")
                     cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name, 0, time.time()))
-                    return True
+                return True
             else:
                 logger.error("There were no candidates to perform such maintenance.")
                 return False

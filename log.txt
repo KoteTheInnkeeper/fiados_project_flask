@@ -1,67 +1,484 @@
-2021-02-24 09:14:06,218 DEBUG    [database_managment.py:26] New log file created and 'Database' object referred to utils/database_file.db.
-2021-02-24 09:14:06,218 DEBUG    [database_managment.py:28] Checking if utils/database_file.db exists
-2021-02-24 09:14:06,218 DEBUG    [database_managment.py:30] utils/database_file.db exists
-2021-02-24 09:14:06,219 DEBUG    [database_managment.py:50] Checking if utils/database_file.db exists
-2021-02-24 09:14:06,220 DEBUG    [database_managment.py:52] utils/database_file.db exists. If 'operaciones' and 'saldos' tables don't exist, they will be created.
-2021-02-24 09:14:06,603 DEBUG    [app.py:29] Initializing Flask app.
-2021-02-24 09:14:06,606 DEBUG    [app.py:33] Permanent session lifetime set
-2021-02-24 09:14:06,617 WARNING  [_internal.py:113]  * Debugger is active!
-2021-02-24 09:14:06,617 INFO     [_internal.py:113]  * Debugger PIN: 337-420-590
-2021-02-24 09:14:14,818 DEBUG    [app.py:126] Checking for session
-2021-02-24 09:14:14,819 DEBUG    [database_managment.py:136] Geting the names in the 'operaciones' table.
-2021-02-24 09:14:14,819 DEBUG    [database_managment.py:140] Clients found. Saving them into a set
-2021-02-24 09:14:14,819 DEBUG    [database_managment.py:145] Returning these clients as a list
-2021-02-24 09:14:14,832 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:14] "[37mGET /operations HTTP/1.1[0m" 200 -
-2021-02-24 09:14:20,445 DEBUG    [app.py:64] Checking for session
-2021-02-24 09:14:20,445 DEBUG    [app.py:66] Session for patricia found.
-2021-02-24 09:14:20,445 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
-2021-02-24 09:14:20,445 DEBUG    [database_managment.py:136] Geting the names in the 'operaciones' table.
-2021-02-24 09:14:20,446 DEBUG    [database_managment.py:140] Clients found. Saving them into a set
-2021-02-24 09:14:20,446 DEBUG    [database_managment.py:145] Returning these clients as a list
-2021-02-24 09:14:20,454 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:20] "[37mGET /add HTTP/1.1[0m" 200 -
-2021-02-24 09:14:27,686 DEBUG    [app.py:64] Checking for session
-2021-02-24 09:14:27,686 DEBUG    [app.py:66] Session for patricia found.
-2021-02-24 09:14:27,686 DEBUG    [app.py:69] POST request received. Getting the form's data
-2021-02-24 09:14:27,687 DEBUG    [app.py:78] Conditions for adding operation matched. Checking the names
-2021-02-24 09:14:27,688 DEBUG    [database_managment.py:91] Try to get today's date and add the operation.
-2021-02-24 09:14:27,804 DEBUG    [database_managment.py:99] Updating the 'saldos' table.
-2021-02-24 09:14:28,005 DEBUG    [app.py:84] Added Cristina's debt for $100.00
-2021-02-24 09:14:28,005 DEBUG    [app.py:85] Changing values in strings for showing them.
-2021-02-24 09:14:28,011 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:28] "[37mPOST /add HTTP/1.1[0m" 200 -
-2021-02-24 09:14:30,463 DEBUG    [app.py:64] Checking for session
-2021-02-24 09:14:30,463 DEBUG    [app.py:66] Session for patricia found.
-2021-02-24 09:14:30,463 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
-2021-02-24 09:14:30,463 DEBUG    [database_managment.py:136] Geting the names in the 'operaciones' table.
-2021-02-24 09:14:30,464 DEBUG    [database_managment.py:140] Clients found. Saving them into a set
-2021-02-24 09:14:30,464 DEBUG    [database_managment.py:145] Returning these clients as a list
-2021-02-24 09:14:30,465 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:30] "[37mGET /add HTTP/1.1[0m" 200 -
-2021-02-24 09:14:38,785 DEBUG    [app.py:64] Checking for session
-2021-02-24 09:14:38,785 DEBUG    [app.py:66] Session for patricia found.
-2021-02-24 09:14:38,785 DEBUG    [app.py:69] POST request received. Getting the form's data
-2021-02-24 09:14:38,786 DEBUG    [app.py:78] Conditions for adding operation matched. Checking the names
-2021-02-24 09:14:38,786 DEBUG    [database_managment.py:91] Try to get today's date and add the operation.
-2021-02-24 09:14:38,872 DEBUG    [database_managment.py:99] Updating the 'saldos' table.
-2021-02-24 09:14:39,016 DEBUG    [app.py:84] Added Pepito's payment for $10000.00
-2021-02-24 09:14:39,016 DEBUG    [app.py:85] Changing values in strings for showing them.
-2021-02-24 09:14:39,017 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:39] "[37mPOST /add HTTP/1.1[0m" 200 -
-2021-02-24 09:14:41,299 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:41] "[37mGET / HTTP/1.1[0m" 200 -
-2021-02-24 09:14:43,883 DEBUG    [database_managment.py:115] Gathering balances
-2021-02-24 09:14:43,893 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:43] "[37mGET /totals HTTP/1.1[0m" 200 -
-2021-02-24 09:14:46,969 DEBUG    [app.py:126] Checking for session
-2021-02-24 09:14:46,970 DEBUG    [database_managment.py:136] Geting the names in the 'operaciones' table.
-2021-02-24 09:14:46,970 DEBUG    [database_managment.py:140] Clients found. Saving them into a set
-2021-02-24 09:14:46,970 DEBUG    [database_managment.py:145] Returning these clients as a list
-2021-02-24 09:14:46,971 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:46] "[37mGET /operations HTTP/1.1[0m" 200 -
-2021-02-24 09:14:52,493 DEBUG    [app.py:126] Checking for session
-2021-02-24 09:14:52,495 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:52] "[32mPOST /operations HTTP/1.1[0m" 302 -
-2021-02-24 09:14:52,512 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:52] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
-2021-02-24 09:14:54,699 DEBUG    [app.py:126] Checking for session
-2021-02-24 09:14:54,699 DEBUG    [database_managment.py:136] Geting the names in the 'operaciones' table.
-2021-02-24 09:14:54,700 DEBUG    [database_managment.py:140] Clients found. Saving them into a set
-2021-02-24 09:14:54,700 DEBUG    [database_managment.py:145] Returning these clients as a list
-2021-02-24 09:14:54,701 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:54] "[37mGET /operations HTTP/1.1[0m" 200 -
-2021-02-24 09:14:59,261 DEBUG    [app.py:126] Checking for session
-2021-02-24 09:14:59,262 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:59] "[32mPOST /operations HTTP/1.1[0m" 302 -
-2021-02-24 09:14:59,269 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:14:59] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
-2021-02-24 09:15:18,506 DEBUG    [app.py:180] Maintenance tab opened. Searching for session.
-2021-02-24 09:15:18,512 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 09:15:18] "[37mGET /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 12:59:29,102 DEBUG    [database_managment.py:26] New log file created and 'Database' object referred to utils/database_file.db.
+2021-02-24 12:59:29,102 DEBUG    [database_managment.py:28] Checking if utils/database_file.db exists
+2021-02-24 12:59:29,103 DEBUG    [database_managment.py:30] utils/database_file.db exists
+2021-02-24 12:59:29,103 DEBUG    [database_managment.py:50] Checking if utils/database_file.db exists
+2021-02-24 12:59:29,104 DEBUG    [database_managment.py:52] utils/database_file.db exists. If 'operaciones' and 'saldos' tables don't exist, they will be created.
+2021-02-24 12:59:29,115 DEBUG    [app.py:29] Initializing Flask app.
+2021-02-24 12:59:29,117 DEBUG    [app.py:33] Permanent session lifetime set
+2021-02-24 12:59:29,133 WARNING  [_internal.py:113]  * Debugger is active!
+2021-02-24 12:59:29,134 INFO     [_internal.py:113]  * Debugger PIN: 185-949-440
+2021-02-24 12:59:30,876 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 12:59:30] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:00:15,015 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:00:15] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:00:26,447 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:00:26] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:00:27,482 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:00:27] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:00:27,891 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:00:27] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:00:33,893 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:00:33] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:01:04,041 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:01:04] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:01:23,692 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:01:23] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:01:28,572 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:01:28] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:02:12,673 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:12] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:02:24,096 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:02:24,097 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:02:24,097 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:02:24,097 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:24,097 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:24,097 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:24,104 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:24] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:02:24,938 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:24,939 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:24,939 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:24,940 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:24,946 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:24] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:02:26,814 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:26,816 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:26] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:02:26,829 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:26] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 13:02:28,692 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:28,693 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:28,693 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:28,693 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:28,694 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:28] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:02:30,937 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:30,938 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:30] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:02:30,947 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:30] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:02:32,377 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:32,378 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:32,378 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:32,379 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:32,380 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:32] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:02:34,603 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:34,605 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:34] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:02:34,614 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:34] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 13:02:35,889 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:35,889 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:35,890 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:35,890 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:35,891 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:35] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:02:37,770 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:02:37,772 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:37] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:02:37,780 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:37] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:02:39,222 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:02:39,222 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:02:39,231 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:39] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:02:42,565 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:02:42,565 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:02:42,565 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:02:42,565 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:02:42,566 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:02:42,566 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:02:42,567 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:42] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:02:47,073 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:02:47,074 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:02:47,075 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:47] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:02:53,956 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:02:53,956 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:02:53,956 DEBUG    [app.py:69] POST request received. Getting the form's data
+2021-02-24 13:02:53,957 DEBUG    [app.py:78] Conditions for adding operation matched. Checking the names
+2021-02-24 13:02:53,957 DEBUG    [database_managment.py:91] Try to get today's date and add the operation.
+2021-02-24 13:02:53,963 DEBUG    [database_managment.py:99] Updating the 'saldos' table.
+2021-02-24 13:02:53,975 DEBUG    [app.py:84] Added Cristina's payment for $2612.00
+2021-02-24 13:02:53,975 DEBUG    [app.py:85] Changing values in strings for showing them.
+2021-02-24 13:02:53,982 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:53] "[37mPOST /add HTTP/1.1[0m" 200 -
+2021-02-24 13:02:55,850 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:02:55] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:03:09,945 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:03:09,945 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:03:09,946 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:03:09] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:03:12,506 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:03:12,506 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:03:12,507 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:03:12,507 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:03:12,508 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:03:12] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:03:14,083 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:03:14,085 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:03:14] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:03:14,095 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:03:14] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:04:07,517 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:04:07,517 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:04:07,518 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:04:07,518 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:04:07,519 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:07] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:04:10,128 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:04:10,129 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:10] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:04:10,137 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:10] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:04:36,949 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:04:36,949 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:04:36,950 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:04:36,950 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:04:36,951 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:36] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:04:38,479 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:04:38,480 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:38] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:04:38,503 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:04:38] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:05:36,178 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:36] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:05:40,522 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:05:40,522 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:05:40,523 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:40] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:05:42,400 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:05:42,401 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:05:42,401 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:05:42,401 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:05:42,402 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:42] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:05:43,501 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:05:43,501 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:05:43,501 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:05:43,501 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:05:43,502 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:05:43,502 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:05:43,503 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:43] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:05:44,355 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:05:44,355 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:05:44,356 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:05:44,356 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:05:44,357 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:44] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:05:44,884 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:05:44,884 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:05:44,886 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:44] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:05:46,241 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:05:46,242 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:05:46,242 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:05:46,242 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:05:46,243 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:46] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:05:47,256 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:05:47,257 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:47] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:05:47,265 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:05:47] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:06:07,381 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:07] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:06:12,375 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:06:12,375 DEBUG    [database_managment.py:121] Balances found were put into a list and returned.
+2021-02-24 13:06:12,376 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:12] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:06:14,556 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:06:14,556 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:06:14,556 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:06:14,556 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:14,557 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:14,557 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:14,558 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:14] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:06:15,686 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:15,687 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:15,687 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:15,687 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:15,688 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:15] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:06:16,157 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:06:16,157 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:06:16,158 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:06:16,158 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:16,158 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:16,158 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:16,160 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:16] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:06:24,655 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:06:24,669 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:24] "[37mGET /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:06:26,477 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:06:26,479 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:26] "[37mPOST /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:06:34,791 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:06:34,792 DEBUG    [database_managment.py:214] Updating the database
+2021-02-24 13:06:34,804 DEBUG    [database_managment.py:218] Getting the non cancelled debts/payments from the 'saldos' table.
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:225] The following people has yet to cancel their debts/payments: ['pepito']
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:226] Getting the name of all clients within the 'operaciones' table.
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:233] The following people has operations within the 'operaciones' table: {'cristina', 'iván', 'pepito'}
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:234] Checking for the 'unmatches' between the previous list and set.
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:241] The following names are suitable for maintenance: ['cristina', 'iván']. Performing maintenance...
+2021-02-24 13:06:34,805 DEBUG    [database_managment.py:243] Erasing Cristina's operations.
+2021-02-24 13:06:34,806 DEBUG    [database_managment.py:245] Loading a 'zero' operation for Cristina
+2021-02-24 13:06:34,806 DEBUG    [database_managment.py:243] Erasing Iván's operations.
+2021-02-24 13:06:34,806 DEBUG    [database_managment.py:245] Loading a 'zero' operation for Iván
+2021-02-24 13:06:34,812 DEBUG    [app.py:195] 'Mantenimiento parcial' performed.
+2021-02-24 13:06:34,814 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:34] "[37mPOST /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:06:36,626 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:36,627 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:36,627 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:36,627 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:36,628 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:36] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:06:37,679 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:37,681 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:37] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:06:37,688 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:37] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:06:39,163 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:39,164 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:39,164 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:39,164 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:39,165 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:39] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:06:40,606 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:40,608 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:40] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:06:40,620 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:40] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 13:06:41,426 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:41,426 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:06:41,427 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:06:41,427 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:06:41,428 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:41] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:06:42,996 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:06:42,997 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:42] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:06:43,006 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:43] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:06:47,183 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:06:47,184 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:47] "[37mGET /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:06:51,926 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:06:51,927 DEBUG    [database_managment.py:257] Performing total maintenance. First, we do a parcial one.
+2021-02-24 13:06:51,927 DEBUG    [database_managment.py:214] Updating the database
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:218] Getting the non cancelled debts/payments from the 'saldos' table.
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:225] The following people has yet to cancel their debts/payments: ['pepito']
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:226] Getting the name of all clients within the 'operaciones' table.
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:233] The following people has operations within the 'operaciones' table: {'cristina', 'iván', 'pepito'}
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:234] Checking for the 'unmatches' between the previous list and set.
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:241] The following names are suitable for maintenance: ['cristina', 'iván']. Performing maintenance...
+2021-02-24 13:06:51,939 DEBUG    [database_managment.py:243] Erasing Cristina's operations.
+2021-02-24 13:06:51,940 DEBUG    [database_managment.py:245] Loading a 'zero' operation for Cristina
+2021-02-24 13:06:51,940 DEBUG    [database_managment.py:243] Erasing Iván's operations.
+2021-02-24 13:06:51,940 DEBUG    [database_managment.py:245] Loading a 'zero' operation for Iván
+2021-02-24 13:06:51,946 DEBUG    [database_managment.py:261] Getting the actual account state for each individual from 'saldos'.
+2021-02-24 13:06:51,946 DEBUG    [database_managment.py:265] Erasing all of Pepito's operations.
+2021-02-24 13:06:51,946 DEBUG    [database_managment.py:267] Adding a operation to synthesize the state of the account.
+2021-02-24 13:06:51,950 DEBUG    [database_managment.py:269] Total maintenance performed correctly.
+2021-02-24 13:06:51,951 DEBUG    [app.py:195] 'Mantenimiento total' performed.
+2021-02-24 13:06:51,952 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:51] "[37mPOST /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:06:57,434 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:06:57] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:14:42,679 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:14:42,679 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:14:42,679 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:14:42,679 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:42,680 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:42,680 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:42,681 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:42] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:14:43,318 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:43,318 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:43,319 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:43,319 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:43,320 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:43] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:14:45,144 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:45,146 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:45] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:14:45,154 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:45] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:14:46,445 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:46,446 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:46,446 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:46,446 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:46,447 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:46] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:14:48,482 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:14:48,482 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:14:48,482 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:14:48,482 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:48,482 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:48,483 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:48,483 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:48] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:14:55,596 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:55,597 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:55,597 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:55,597 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:55,598 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:55] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:14:58,246 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:58,248 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:58] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:14:58,259 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:58] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 13:14:59,282 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:14:59,282 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:14:59,282 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:14:59,282 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:59,283 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:59,283 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:59,284 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:59] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:14:59,568 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:14:59,568 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:14:59,569 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:14:59,569 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:14:59,570 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:14:59] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:15:01,427 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:15:01,428 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:01] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:15:01,438 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:01] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:15:17,540 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:15:17,540 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:15:17,541 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:15:17,541 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:15:17,541 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:15:17,541 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:15:17,542 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:17] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:15:24,293 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:15:24,294 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:15:24,294 DEBUG    [app.py:69] POST request received. Getting the form's data
+2021-02-24 13:15:24,294 DEBUG    [app.py:78] Conditions for adding operation matched. Checking the names
+2021-02-24 13:15:24,294 DEBUG    [database_managment.py:91] Try to get today's date and add the operation.
+2021-02-24 13:15:24,301 DEBUG    [database_managment.py:99] Updating the 'saldos' table.
+2021-02-24 13:15:24,311 DEBUG    [app.py:84] Added Pepito's payment for $1000.00
+2021-02-24 13:15:24,311 DEBUG    [app.py:85] Changing values in strings for showing them.
+2021-02-24 13:15:24,312 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:24] "[37mPOST /add HTTP/1.1[0m" 200 -
+2021-02-24 13:15:25,463 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:25] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:15:26,201 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:15:26,201 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:15:26,202 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:15:26,202 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:15:26,203 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:26] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:15:28,293 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:15:28,294 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:28] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:15:28,304 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:15:28] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:19:38,099 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:19:38] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:20:04,741 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:20:04] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:20:42,913 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:20:42,913 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:20:42,914 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:20:42,914 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:20:42,915 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:20:42] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:20:47,391 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:20:47,393 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:20:47] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:20:47,405 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:20:47] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:21:08,997 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:21:08,998 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:21:08,998 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:21:08,998 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:21:08,999 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:21:08] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:21:10,636 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:21:10,638 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:21:10] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:21:10,648 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:21:10] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:24:06,011 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:24:06] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:24:38,298 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:24:38] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:24:50,781 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:24:50] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:25:26,712 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:25:26] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:25:40,323 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:25:40] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:25:41,216 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:25:41] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:25:54,883 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:25:54] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:25:55,520 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:25:55] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:26:22,073 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:22,073 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:22,074 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:22,074 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:22,075 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:22] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:26:24,996 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:24,998 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:24] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:26:25,007 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:25] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 13:26:25,964 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:25,965 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:25,965 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:25,965 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:25,967 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:25] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:26:27,353 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:27,355 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:27] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:26:27,361 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:27] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 13:26:28,327 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:28,327 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:28,328 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:28,328 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:28,329 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:28] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:26:29,908 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:29,910 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:29] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:26:29,920 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:29] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:26:32,947 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:26:32,947 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:26:32,947 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:26:32,948 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:32,948 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:32,948 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:32,950 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:32] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:26:40,099 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:26:40,099 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:26:40,099 DEBUG    [app.py:69] POST request received. Getting the form's data
+2021-02-24 13:26:40,100 DEBUG    [app.py:78] Conditions for adding operation matched. Checking the names
+2021-02-24 13:26:40,100 DEBUG    [database_managment.py:91] Try to get today's date and add the operation.
+2021-02-24 13:26:40,105 DEBUG    [database_managment.py:99] Updating the 'saldos' table.
+2021-02-24 13:26:40,115 DEBUG    [app.py:84] Added Pepito's payment for $1325.00
+2021-02-24 13:26:40,115 DEBUG    [app.py:85] Changing values in strings for showing them.
+2021-02-24 13:26:40,116 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:40] "[37mPOST /add HTTP/1.1[0m" 200 -
+2021-02-24 13:26:41,572 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:41] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:26:52,918 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:52,918 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:52,919 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:52,919 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:52,921 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:52] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:26:54,196 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:26:54,197 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:26:54,197 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:26:54,197 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:54,197 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:54,197 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:54,199 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:54] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:26:55,066 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:55] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:26:55,534 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 13:26:55,535 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:55] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 13:26:56,961 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:26:56,962 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:56] "[37mGET /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:26:57,803 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:26:57,803 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:26:57,803 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:26:57,803 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:57,803 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:57,804 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:57,805 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:57] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:26:58,116 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:26:58,117 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:26:58,117 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:26:58,117 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:26:58,118 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:58] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:26:58,736 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:26:58] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:27:05,136 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:27:05,136 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:27:05,137 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:27:05,137 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:27:05,138 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:27:05] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 13:27:06,830 DEBUG    [app.py:126] Checking for session
+2021-02-24 13:27:06,832 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:27:06] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 13:27:06,842 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:27:06] "[37mGET /show_operations?client=Pepito HTTP/1.1[0m" 200 -
+2021-02-24 13:31:09,212 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:31:09] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:31:58,781 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:31:58] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:00,096 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:00] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:00,281 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:00] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:13,280 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:13] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:13,642 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:13] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:13,805 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:13] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:18,317 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:18] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:18,485 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:18] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:18,620 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:18] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:18,765 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:18] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:32:18,907 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:32:18] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:33:14,452 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:33:14] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:33:24,735 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:33:24] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:33:51,119 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 13:33:51,131 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:33:51] "[37mGET /maintenance HTTP/1.1[0m" 200 -
+2021-02-24 13:34:00,553 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:34:00] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:37:09,935 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:37:09,936 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:37:09,936 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:37:09,936 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:37:09,937 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:37:09,937 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:37:09,938 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:37:09] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:45:58,597 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:45:58,598 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:45:58,598 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:45:58,598 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:45:58,598 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:45:58,599 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:45:58,600 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:45:58] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:46:01,983 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:46:01] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:46:04,278 DEBUG    [app.py:64] Checking for session
+2021-02-24 13:46:04,278 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 13:46:04,278 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 13:46:04,279 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 13:46:04,279 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 13:46:04,279 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 13:46:04,280 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:46:04] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 13:46:33,735 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:46:33] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:50:57,900 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:50:57] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:51:26,114 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:51:26] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:53:50,935 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:53:50] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:54:02,700 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:54:02] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:54:03,614 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:54:03] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:56:36,671 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:56:36] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 13:56:54,456 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 13:56:54] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 14:01:37,617 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:01:37] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 14:02:21,623 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:02:21] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 14:02:32,655 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:02:32] "[37mGET / HTTP/1.1[0m" 200 -
+2021-02-24 14:30:47,983 DEBUG    [database_managment.py:115] Gathering balances
+2021-02-24 14:30:47,984 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:47] "[37mGET /totals HTTP/1.1[0m" 200 -
+2021-02-24 14:30:50,964 DEBUG    [app.py:126] Checking for session
+2021-02-24 14:30:50,965 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 14:30:50,966 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 14:30:50,966 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 14:30:50,967 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:50] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 14:30:53,487 DEBUG    [app.py:126] Checking for session
+2021-02-24 14:30:53,489 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:53] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 14:30:53,499 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:53] "[37mGET /show_operations?client=Cristina HTTP/1.1[0m" 200 -
+2021-02-24 14:30:55,009 DEBUG    [app.py:126] Checking for session
+2021-02-24 14:30:55,009 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 14:30:55,010 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 14:30:55,010 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 14:30:55,011 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:55] "[37mGET /operations HTTP/1.1[0m" 200 -
+2021-02-24 14:30:56,618 DEBUG    [app.py:126] Checking for session
+2021-02-24 14:30:56,619 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:56] "[32mPOST /operations HTTP/1.1[0m" 302 -
+2021-02-24 14:30:56,627 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:30:56] "[37mGET /show_operations?client=Iván HTTP/1.1[0m" 200 -
+2021-02-24 14:31:02,467 DEBUG    [app.py:64] Checking for session
+2021-02-24 14:31:02,467 DEBUG    [app.py:66] Session for patricia found.
+2021-02-24 14:31:02,467 DEBUG    [app.py:93] GET request received. Getting the clients and rendering html.
+2021-02-24 14:31:02,467 DEBUG    [database_managment.py:149] Geting the names in the 'operaciones' table.
+2021-02-24 14:31:02,468 DEBUG    [database_managment.py:153] Clients found. Saving them into a set
+2021-02-24 14:31:02,468 DEBUG    [database_managment.py:158] Returning these clients as a list
+2021-02-24 14:31:02,469 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:31:02] "[37mGET /add HTTP/1.1[0m" 200 -
+2021-02-24 14:31:03,906 DEBUG    [app.py:186] Maintenance tab opened. Searching for session.
+2021-02-24 14:31:03,907 INFO     [_internal.py:113] 127.0.0.1 - - [24/Feb/2021 14:31:03] "[37mGET /maintenance HTTP/1.1[0m" 200 -

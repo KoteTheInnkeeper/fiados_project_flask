@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('display_totals')}}">Saldos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('operations')}}">Operaciones</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('add_operation')}}">Agregar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{{url_for('maintenance')}}">Mantenimiento</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Área de mantenimiento</h1>
+    <p class="lead">Se recomienda encarecidamente no iniciar el mantenimiento hasta leer la descripción de lo que éste hace.</p>
+    <hr class="my-4">
+    <p>La base de datos almacena las operaciones individuales separadas de los "saldos totales" (los que se visualizan en 'Saldos'). Cada vez que un saldo alcanza el 'cero', este se elimina de dónde se almacenan los saldos, pero las operaciones que llevaron al individuo en cuestión a cancelar su deuda siguen almacenadas.</p>
+    <p>Si realiza un mantenimiento 'parcial', se eliminarán todas las operaciones efectuadas para los individuos que cumplan la siguiente condición: haber cancelado sus deudas. Tenga en mente que esto significa que no podrá consultar cómo canceló su deuda el individuo ni de cuánto era ésta.</p>
+
+    <p>Por otra parte, si realiza un mantenimiento 'completo', se eliminarán las operaciones de TODOS los individuos, aún si no han cancelado su deuda, pero se almacenará el estado hasta la fecha de su deuda y ésta figurará aún en la pestaña de 'Saldos', aunque no podrá consultar el historial (de hecho, en el historial figurará una operación que resume el estado de la cuenta individual al momento de realizar el mantenimiento). Esto último quiere decir que, si Fulano tenía una deuda total de $2000 (con las numerosas operaciones que pudiera haber detrás de tal cuenta), en la pestaña de operaciones de Fulano, luego de realizar el mantenimiento, figurará, el día de la fecha, una deuda por $2000, no afectando así el balance total.</p>
+    <p>Por último, queda aclarar que en cualquier tipo de mantenimiento, los clientes con los que ya se hayan realizado operaciones seguirán existiendo como 'clientes antiguos' (podrá consultar sus operaciones y le serán sugeridos sus nombres al momento de agregar una nueva operación).</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </div>
+{% endblock %}

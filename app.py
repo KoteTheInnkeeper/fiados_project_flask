@@ -171,9 +171,23 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('home'))
 
+@app.route('/maintenance')
+def maintenance():
+    """
+        Renders a template for showing what maintenance does if approached with a 'GET' request. Otherwise,
+        it will do the maintenance.
+    """
+    log.debug("Maintenance tab opened. Searching for session.")
+    if "user" in session:
+        return render_template('maintenance.html')
+    else:
+        log.error("Attempted to do maintenance without a user session. Redirecting to 'login' page.")
+        return redirect(url_for('login'))
+
 
 ### FLASK RUN ONLY IF THIS IS THE MAIN SCRIPT ###
 if __name__ == '__main__':
     app.run(debug=True)
+    
     
 

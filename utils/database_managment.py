@@ -102,28 +102,6 @@ class Database:
             logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
             raise
 
-    def add_payment(self, name: str, amount: float) -> None:
-        """
-            This method deals with adding a debt to the database.
-        :param name: client's name
-        :param amount: amount the client payed.
-        :return:
-        """
-        logger.debug("Try to get today's date and add the payment.")
-        try:
-            date = time.time()
-            amount = abs(amount)
-            with DatabaseConnection(self.host) as connection:
-                cursor = connection.cursor()
-                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name.lower(), amount, date))
-            logger.debug("Updating database.")
-            self.update()
-        except sqlite3.OperationalError:
-            logger.critical("For some reason, a 'sqlite3.OperationalError' was raised.")
-            raise
-        else:
-            logger.debug(f"{name.title()}'s payment for $.2f added succesfully." % amount)
-
     def show_balances(self) -> List:
         """
             Returns a list where each element it's a tuple with two elements: name and amount of
@@ -187,13 +165,14 @@ class Database:
             if results:
                 operations = []
                 for (amount, date) in results:
-                    operation = 'debt' if amount < 0 else 'payment'
-                    date = float(date)
-                    timestamp = datetime.fromtimestamp(date)
-                    date_to_show = timestamp.strftime('%d/%m/%Y')
-                    time_to_show = timestamp.strftime('%H:%M')
-                    amount_string = "%.2f" % abs(amount)
-                    operations.append((operation, amount_string, date_to_show, time_to_show))
+                    if amount != 0:
+                        operation = 'debt' if amount < 0 else 'payment'
+                        date = float(date)
+                        timestamp = datetime.fromtimestamp(date)
+                        date_to_show = timestamp.strftime('%d/%m/%Y')
+                        time_to_show = timestamp.strftime('%H:%M')
+                        amount_string = "%.2f" % abs(amount)
+                        operations.append((operation, amount_string, date_to_show, time_to_show))
                 return operations
             else:
                 return []
@@ -207,4 +186,70 @@ class Database:
                 return True
             else:
                 return False
+    
+    def parcial_maintenance(self):
+        """
+            The parcial maintenance consists of erasing all of the individual's operations where the debt has
+            been payed completety.
+
+            Returns True when the maintenance was done and False when it didn't. Altough, this isn't useful
+            at the program's current state, it's more of a 'debugging' device for me to teel if it happened.
+        """
+        logger.debug("Updating the database")
+        self.update()
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            logger.debug("Getting the non cancelled debts/payments from the 'saldos' table.")
+            cursor.execute("SELECT name FROM saldos")
+            results = cursor.fetchall()
+            non_cancelled = [
+                e[0]
+                for e in results
+            ]
+            logger.debug(f"The following people has yet to cancel their debts/payments: {non_cancelled}")
+            logger.debug("Getting the name of all clients within the 'operaciones' table.")
+            cursor.execute("SELECT name FROM operaciones")
+            results = cursor.fetchall()
+            operations_name = {
+                e[0]
+                for e in results
+            }
+            logger.debug(f"The following people has operations within the 'operaciones' table: {operations_name}")
+            logger.debug("Checking for the 'unmatches' between the previous list and set.")
+            suitable_for_maintenance = [
+                e
+                for e in operations_name
+                if e not in non_cancelled
+            ]
+            if any(suitable_for_maintenance):
+                logger.debug(f"The following names are suitable for maintenance: {suitable_for_maintenance}. Performing maintenance...")
+                for name in suitable_for_maintenance:
+                    logger.debug(f"Erasing {name.title()}'s operations.")
+                    cursor.execute("DELETE FROM operaciones WHERE name=?", (name, ))
+                    logger.debug(f"Loading a 'zero' operation for {name.title()}")
+                    cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name, 0, time.time()))
+                    return True
+            else:
+                logger.error("There were no candidates to perform such maintenance.")
+                return False
+
+    def total_maintenance(self) -> True:
+        """
+            The total maintenance constists of erasing all the operations for all individuals, leaving only one, where
+            we synthesize the debt/payment for that person at the moment.
+        """
+        logger.debug("Performing total maintenance. First, we do a parcial one.")
+        self.parcial_maintenance()
+        with DatabaseConnection(self.host) as connection:
+            cursor = connection.cursor()
+            logger.debug("Getting the actual account state for each individual from 'saldos'.")
+            cursor.execute("SELECT * FROM saldos")
+            results = cursor.fetchall()
+            for (name, amount) in results:
+                logger.debug(f"Erasing all of {name.title()}'s operations.")
+                cursor.execute("DELETE FROM operaciones WHERE name=?", (name, ))
+                logger.debug(f"Adding a operation to synthesize the state of the account.")
+                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name, amount, time.time()))
+        logger.debug("Total maintenance performed correctly.")
+        return True
 

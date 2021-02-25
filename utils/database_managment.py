@@ -95,7 +95,7 @@ class Database:
             with DatabaseConnection(self.host) as connection:
                 cursor = connection.cursor()
                 amount = (-1 * amount) if operation == 'debt' else amount
-                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name.lower(), amount, date))
+                cursor.execute("INSERT INTO operaciones VALUES(?, ?, ?)", (name.lower().strip(), amount, date))
             logger.debug("Updating the 'saldos' table.")
             self.update()
         except sqlite3.OperationalError:
